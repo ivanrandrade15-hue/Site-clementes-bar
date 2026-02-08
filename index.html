@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clementes Bar | Oficial</title>
+    <!-- Importação de ícones oficiais -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #111; color: #fff; }
+
+        header { background-color: #FFD700; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: #000; text-transform: uppercase; }
+        .nav-links a { color: #000; text-decoration: none; font-weight: bold; margin-left: 15px; padding: 8px 12px; transition: 0.3s; }
+        .nav-links a:hover { background: #000; color: #FFD700; border-radius: 5px; }
+
+        section { 
+            padding: 6rem 1.5rem; 
+            min-height: 100vh; 
+            display: none; 
+            position: relative; 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            align-items: center; 
+            justify-content: center;
+        }
+        section.active { display: flex; animation: fadeIn 0.6s ease-in-out; }
+        
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1; }
+
+        .container { position: relative; z-index: 2; max-width: 700px; background: rgba(255, 255, 255, 0.98); color: #222; padding: 3rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); text-align: center; border-bottom: 8px solid #FFD700; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 { font-size: 2.5rem; margin-bottom: 1.5rem; color: #000; border-bottom: 5px solid #FFD700; display: inline-block; }
+
+        /* IMAGENS DE FUNDO */
+        #sobre { background-image: url('clementes_bar.jpg'); } 
+        #cardapio { background-image: url('https://images.unsplash.com'); } 
+        #local { background-image: url('https://images.unsplash.com'); }
+
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; margin: 10px 0; background: #f9f9f9; border-radius: 8px; border-left: 6px solid #FFD700; font-weight: bold; }
+        .price { background: #000; color: #FFD700; padding: 4px 12px; border-radius: 20px; }
+
+        .btn-acao { display: inline-block; margin-top: 25px; background: #000; color: #fff; padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        .btn-acao:hover { background: #FFD700; color: #000; transform: scale(1.05); }
+
+        /* WHATSAPP FLUTUANTE */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover { background-color: #128c7e; transform: scale(1.1); }
+
+        footer { text-align: center; padding: 2rem; background: #000; color: #777; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">Clementes Bar</div>
+        <div class="nav-links">
+            <a href="#" onclick="show('sobre')">História</a>
+            <a href="#" onclick="show('cardapio')">Cardápio</a>
+            <a href="#" onclick="show('local')">Localização</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Botão do WhatsApp Integrado -->
+<a href="https://wa.me." class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<section id="sobre" class="active">
+    <div class="overlay"></div>
+    <div class="container">
+        <h2>Nossa História</h2>
+        <p>O <strong>Clementes Bar</strong> nasceu na coragem e na teimosia de Seu Clemente!</p>
+        <p style="margin-top:15px">“Se der certo, eu fico rico. Se não der… eu bebo tudo.” Aqui a cerveja é trincando e o petisco é de primeira.</p>
+        <a href="#" onclick="show('cardapio')" class="btn-acao">Ver Cardápio</a>
+    </div>
+</section>
+
+<section id="cardapio">
+    <div class="overlay"></div>
+    <div class="container">
+        <h2>Cardápio Típico</h2>
+        <div class="menu-item"><span>Baião de Dois</span> <span class="price">R$ 20,00</span></div>
+        <div class="menu-item"><span>Costela Gaúcha</span> <span class="price">R$ 28,00</span></div>
+        <div class="menu-item"><span>Frango Frito</span> <span class="price">R$ 25,00</span></div>
+        <div class="menu-item"><span>Feijoada Completa</span> <span class="price">R$ 30,00</span></div>
+        <p style="margin-top:20px; font-weight:bold; color:#25d366;"><i class="fab fa-whatsapp"></i> Peça agora pelo Zap!</p>
+    </div>
+</section>
+
+<section id="local">
+    <div class="overlay"></div>
+    <div class="container">
+        <h2>Onde Estamos</h2>
+        <p>📍 Rua Padre Clemente Segura, 1038<br>Bairro Limoeiro</p>
+        <p style="margin: 15px 0;"><strong>⏰ Terça a Domingo: 10h às 22h</strong></p>
+        <a href="https://maps.app.goo.gl" target="_blank" class="btn-acao">Como Chegar</a>
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 Clementes Bar | Design Profissional
+</footer>
+
+<script>
+    function show(id) {
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+</script>
+
+</body>
+</html>
