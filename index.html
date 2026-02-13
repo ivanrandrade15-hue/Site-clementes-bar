@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clementes Bar | Gold Edition 2026</title>
+
+    <!-- Professional Icons & Luxury Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold-light: #f9e2af;
+            --gold-main: #d4af37;
+            --gold-dark: #926f34;
+            --black-deep: #050505;
+            --black-surface: #121212;
+            --glass: rgba(10, 10, 10, 0.9);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+
+        body { 
+            background-color: var(--black-deep); 
+            color: #fff;
+            background-image: url('https://www.transparenttextures.com');
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Cinzel', serif;
+        }
+
+        header {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        nav { max-width: 1200px; margin: auto; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: 4px; text-decoration: none; }
+        .nav-links a { color: var(--gold-main); text-decoration: none; font-weight: 700; margin-left: 20px; font-size: 0.8rem; letter-spacing: 2px; }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+        }
+        .hero-content h1 { font-size: clamp(3rem, 12vw, 7rem); line-height: 1; margin-bottom: 15px; }
+        .hero-divider { width: 100px; height: 3px; background: var(--gold-main); margin: 25px auto; }
+
+        section { padding: 100px 20px; max-width: 1200px; margin: auto; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-family: 'Cinzel', serif; font-size: 2.5rem; letter-spacing: 5px; }
+
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .category { 
+            background: var(--black-surface); padding: 40px; 
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: 0.5s; position: relative;
+        }
+        .category:hover { border-color: var(--gold-main); transform: translateY(-10px); }
+        .category::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gold-main); }
+
+        .item { display: flex; justify-content: space-between; margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .item h4 { font-family: 'Cinzel'; color: var(--gold-light); font-size: 1.1rem; }
+        .price { color: var(--gold-main); font-weight: 900; font-family: 'Cinzel'; }
+
+        .btn-gold {
+            background: linear-gradient(45deg, var(--gold-dark), var(--gold-light));
+            color: #000; padding: 18px 45px; font-weight: 900; text-decoration: none;
+            display: inline-block; transition: 0.4s; text-transform: uppercase;
+            letter-spacing: 2px; border: none; cursor: pointer; text-align: center;
+        }
+        .btn-gold:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
+
+        /* GOOGLE MAPS NIGHT MODE */
+        .map-wrapper {
+            border: 2px solid var(--gold-main); 
+            line-height: 0;
+            filter: grayscale(1) invert(0.92) contrast(1.2);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+        }
+
+        /* FLOATING BUTTONS */
+        .float-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 3000; }
+        
+        .wa-float, .call-float {
+            width: 60px; height: 60px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 28px;
+            color: #000; box-shadow: 0 10px 20px rgba(0,0,0,0.5); transition: 0.3s;
+            text-decoration: none;
+        }
+        .wa-float { background: linear-gradient(45deg, #bf953f, #fcf6ba); }
+        
+        /* Mobile-only Call Button (Hidden on Desktop) */
+        .call-float { background: #fff; display: none; }
+        @media (max-width: 768px) { .call-float { display: flex; } }
+
+        footer { padding: 60px 20px; text-align: center; border-top: 1px solid #222; color: #555; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo gold-gradient-text">CLEMENTES</a>
+            <div class="nav-links">
+                <a href="#menu">MENU</a>
+                <a href="#local">LOCALIZAÇÃO</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <p style="letter-spacing: 8px; text-transform: uppercase;">Exclusividade & Sabor</p>
+            <h1 class="gold-gradient-text">CLEMENTES BAR</h1>
+            <div class="hero-divider"></div>
+            <a href="#menu" class="btn-gold">Menu Imperial</a>
+        </div>
+    </div>
+
+    <section id="menu">
+        <div class="section-title">
+            <h2 class="gold-gradient-text">Gastronomia Premium</h2>
+            <div class="hero-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="category">
+                <h3 class="gold-gradient-text" style="margin-bottom: 25px;">Especialidades</h3>
+                <div class="item"><div><h4>Picanha Black Gold</h4></div><span class="price">R$ 115</span></div>
+                <div class="item"><div><h4>Costela Angus 12h</h4></div><span class="price">R$ 92</span></div>
+            </div>
+            <div class="category">
+                <h3 class="gold-gradient-text" style="margin-bottom: 25px;">Mixologia</h3>
+                <div class="item"><div><h4>Old Fashioned Royal</h4></div><span class="price">R$ 42</span></div>
+                <div class="item"><div><h4>Gin Gold Tonic</h4></div><span class="price">R$ 38</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION SECTION WITH LIVE MAP -->
+    <section id="local">
+        <div class="section-title">
+            <h2 class="gold-gradient-text">Visite Nossa Casa</h2>
+            <div class="hero-divider"></div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+            <div style="text-align: left; background: var(--black-surface); padding: 40px; border: 1px solid var(--gold-dark);">
+                <h3 class="gold-gradient-text" style="font-size: 1.8rem; margin-bottom: 15px;">Localização</h3>
+                <p style="margin-bottom: 10px;">📍 Rua Padre Clemente Segura, 1038</p>
+                <p style="color: #888; margin-bottom: 30px;">Vila Jacuí, São Paulo - SP</p>
+                
+                <h4 class="gold-gradient-text" style="margin-bottom: 10px;">Horários:</h4>
+                <p style="font-size: 0.9rem; color: #ccc;">Terça a Sábado: 17h — 01h</p>
+                <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 30px;">Domingo: 12h — 19h</p>
+                
+                <!-- REPAIRED GOOGLE MAPS LINK -->
+                <a href="https://www.google.com" 
+                   target="_blank" class="btn-gold" style="width: 100%;">
+                   TRAÇAR ROTA NO GPS <i class="fas fa-location-arrow"></i>
+                </a>
+            </div>
+
+            <div class="map-wrapper">
+                <iframe 
+                    src="https://www.google.com" 
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING ACTION BUTTONS -->
+    <div class="float-container">
+        <!-- Call Button (Topic 3) -->
+        <a href="tel:5511997642432" class="call-float"><i class="fas fa-phone"></i></a>
+        <!-- WhatsApp Gold -->
+        <a href="https://wa.me" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <footer>
+        <p>CLEMENTES BAR &copy; 2026 | THE GOLDEN STANDARD</p>
+    </footer>
+
+</body>
+</html>
