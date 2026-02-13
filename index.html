@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Clementes Bar - Experiência gastronômica premium na Vila Jacuí, São Paulo. Cortes nobres e mixologia autoral.">
+    <title>Clementes Bar | Front-End Luxury Edition</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+
+    <style>
+        /* CSS VARIABLE SYSTEM (Design Tokens) */
+        :root {
+            --primary-gold: #d4af37;
+            --light-gold: #f9e2af;
+            --dark-gold: #926f34;
+            --bg-black: #050505;
+            --surface-black: #121212;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --header-blur: saturate(180%) blur(20px);
+        }
+
+        /* RESET & BASE STYLES */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { 
+            background: var(--bg-black); 
+            color: var(--text-main); 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden;
+            background-image: url('https://www.transparenttextures.com');
+            background-attachment: fixed;
+        }
+
+        /* FRONT-END ARCHITECTURE: UTILITY CLASSES */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .gold-gradient {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* COMPONENTS */
+
+        /* 1. Loading State */
+        #preloader {
+            position: fixed; inset: 0; background: var(--bg-black);
+            z-index: 9999; transition: opacity 0.8s ease;
+        }
+        .loader-content { text-align: center; }
+        .loader-logo { font-family: 'Cinzel'; font-size: 2.5rem; color: var(--primary-gold); letter-spacing: 5px; animation: pulse 2s infinite; }
+
+        /* 2. Responsive Header */
+        header {
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: var(--header-blur);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        nav { height: 80px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-font { font-family: 'Cinzel'; font-weight: 900; letter-spacing: 3px; text-decoration: none; color: var(--primary-gold); }
+        .nav-link { color: var(--text-main); text-decoration: none; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; transition: var(--transition-smooth); }
+        .nav-link:hover { color: var(--primary-gold); }
+
+        /* 3. Hero Section */
+        .hero { height: 100vh; text-align: center; background: radial-gradient(circle at center, rgba(212,175,55,0.05) 0%, transparent 70%); }
+        .hero h1 { font-family: 'Cinzel'; font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 1rem; }
+        .hero-divider { width: 80px; height: 2px; background: var(--primary-gold); margin: 2rem auto; }
+
+        /* 4. Menu & Grid System */
+        .section-padding { padding: 100px 0; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .menu-item-card {
+            background: var(--surface-black); padding: 2.5rem; 
+            border: 1px solid rgba(212, 175, 55, 0.05); transition: var(--transition-smooth);
+            position: relative;
+        }
+        .menu-item-card:hover { transform: translateY(-10px); border-color: var(--primary-gold); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+        
+        .btn-premium {
+            padding: 1.2rem 3rem; background: var(--primary-gold); color: #000;
+            text-decoration: none; font-weight: 800; font-size: 0.85rem; letter-spacing: 2px;
+            text-transform: uppercase; transition: var(--transition-smooth); display: inline-block;
+        }
+        .btn-premium:hover { filter: brightness(1.2); box-shadow: 0 0 20px rgba(212,175,55,0.4); }
+
+        /* 5. Google Maps Frame */
+        .map-container {
+            border: 1px solid var(--primary-gold); overflow: hidden; line-height: 0;
+            filter: grayscale(1) invert(0.92) contrast(1.2); transition: var(--transition-smooth);
+        }
+        .map-container:hover { filter: grayscale(0) invert(0); }
+
+        /* Interactive Canvas */
+        #interactive-bg { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+        section { position: relative; z-index: 5; }
+
+        /* FAB (Floating Action Buttons) */
+        .fab-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; display: flex; flex-direction: column; gap: 1rem; }
+        .fab-btn { 
+            width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 1.5rem; color: #000; text-decoration: none; transition: var(--transition-smooth); 
+        }
+        .bg-gold { background: var(--primary-gold); }
+        .bg-white { background: #fff; }
+
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="flex-center">
+        <div class="loader-content">
+            <div class="loader-logo">CLEMENTES</div>
+            <p style="color: var(--primary-gold); font-size: 0.7rem; letter-spacing: 3px;">INITIALIZING EXPERIENCE</p>
+        </div>
+    </div>
+
+    <!-- FRONT-END INTERACTION LAYER -->
+    <canvas id="interactive-bg"></canvas>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo-font">CLEMENTES</a>
+                <div class="flex-center" style="gap: 2rem;">
+                    <a href="#menu" class="nav-link">RESERVA</a>
+                    <a href="#local" class="nav-link">LOCALIZAÇÃO</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero flex-center">
+            <div class="container">
+                <p style="letter-spacing: 5px; font-weight: 200; margin-bottom: 1rem;">SINCE 1998</p>
+                <h1 class="gold-gradient">CLEMENTES BAR</h1>
+                <div class="hero-divider"></div>
+                <a href="#menu" class="btn-premium">Explorar Menu</a>
+            </div>
+        </section>
+
+        <section id="menu" class="section-padding">
+            <div class="container">
+                <div class="menu-grid">
+                    <div class="menu-item-card">
+                        <h3 class="gold-gradient" style="font-family: 'Cinzel'; margin-bottom: 1.5rem;">Cortes Nobres</h3>
+                        <p style="display: flex; justify-content: space-between; margin-bottom: 1rem;">Picanha Black Gold <span>R$ 115</span></p>
+                        <p style="display: flex; justify-content: space-between;">Costela Angus 12h <span>R$ 92</span></p>
+                    </div>
+                    <div class="menu-item-card">
+                        <h3 class="gold-gradient" style="font-family: 'Cinzel'; margin-bottom: 1.5rem;">Mixologia</h3>
+                        <p style="display: flex; justify-content: space-between; margin-bottom: 1rem;">Negroni Signature <span>R$ 45</span></p>
+                        <p style="display: flex; justify-content: space-between;">Gin Gold Tonic <span>R$ 38</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="local" class="section-padding">
+            <div class="container">
+                <div class="menu-grid" style="align-items: center;">
+                    <div>
+                        <h2 class="gold-gradient" style="font-family: 'Cinzel'; font-size: 2.5rem; margin-bottom: 1.5rem;">Visite-nos</h2>
+                        <p style="margin-bottom: 2rem;">Rua Padre Clemente Segura, 1038<br>São Paulo, SP</p>
+                        <a href="https://www.google.com" target="_blank" class="btn-premium">Traçar Rota</a>
+                    </div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="fab-container">
+        <a href="tel:5511997642432" class="fab-btn bg-white"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me" class="fab-btn bg-gold" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <footer style="padding: 4rem 0; text-align: center; border-top: 1px solid #222;">
+        <p style="color: var(--text-muted); font-size: 0.75rem;">&copy; 2026 CLEMENTES BAR. THE GOLDEN STANDARD.</p>
+    </footer>
+
+    <script>
+        /* --- FRONT-END ENGINE --- */
+
+        // 1. Preloader Handler
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => { preloader.style.display = 'none'; }, 800);
+        });
+
+        // 2. Interactive Gold Particle System
+        const canvas = document.getElementById('interactive-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        const initCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for(let i=0; i<80; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: Math.random() * 0.5 - 0.25,
+                    speedY: Math.random() * 0.5 - 0.25
+                });
+            }
+        };
+
+        const drawParticles = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(212, 175, 55, 0.4)';
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if(p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+            });
+            requestAnimationFrame(drawParticles);
+        };
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        drawParticles();
+    </script>
+</body>
+</html>
