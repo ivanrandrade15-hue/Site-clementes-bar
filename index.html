@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clementes Bar | Gold Front-End 2026</title>
+
+    <!-- Font Awesome para o ícone do WhatsApp -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --black: #050505;
+            --surface: #111111;
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--black); color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .gold-text { background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Cinzel'; }
+
+        /* HEADER */
+        header { position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(212,175,55,0.1); }
+        nav { height: 80px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Cinzel'; font-size: 1.5rem; color: var(--gold); text-decoration: none; font-weight: 900; letter-spacing: 3px; }
+
+        /* DESTAQUES (MENU) */
+        .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+        .highlight-card { background: var(--surface); padding: 30px; border: 1px solid rgba(212,175,55,0.15); transition: var(--transition); text-align: center; }
+        .highlight-card:hover { border-color: var(--gold); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .highlight-card i { color: var(--gold); font-size: 2rem; margin-bottom: 15px; }
+
+        /* BOTÃO WHATSAPP OFICIAL */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background-color: #25d366; /* Verde Oficial WhatsApp */
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            z-index: 2000;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .wa-float:hover { transform: scale(1.1) rotate(15deg); background-color: #128c7e; }
+
+        .btn-gold {
+            padding: 15px 40px; background: var(--gold); color: #000;
+            text-decoration: none; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 2px; transition: var(--transition); display: inline-block;
+            margin-top: 30px;
+        }
+
+        section { padding: 100px 0; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">CLEMENTES</a>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#destaques" style="color:white; text-decoration:none; font-size: 0.8rem; font-weight: 700;">DESTAQUES</a>
+                    <a href="#local" style="color:white; text-decoration:none; font-size: 0.8rem; font-weight: 700;">CONTATO</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section style="height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+        <div class="container">
+            <h1 class="gold-text" style="font-size: clamp(3rem, 10vw, 6rem);">CLEMENTES BAR</h1>
+            <p style="letter-spacing: 8px; color: #aaa; text-transform: uppercase;">Experiência Gastronômica Imperial</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE DESTAQUES (5 ITENS) -->
+    <section id="destaques" class="container">
+        <h2 class="gold-text" style="font-size: 2.5rem; text-align: center; margin-bottom: 50px;">Destaques da Casa</h2>
+        
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <i class="fas fa-fire"></i>
+                <h3 class="gold-text">Picanha Gold</h3>
+                <p>Maturação de 45 dias com sal de ouro.</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-drumstick-bite"></i>
+                <h3 class="gold-text">Costela Angus</h3>
+                <p>Assada lentamente por 12 horas no bafo.</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-cocktail"></i>
+                <h3 class="gold-text">Old Fashioned</h3>
+                <p>Bourbon premium com gelo translúcido.</p>
+            </div>
+            <!-- NOVO DESTAQUE 1 -->
+            <div class="highlight-card">
+                <i class="fas fa-fish"></i>
+                <h3 class="gold-text">Salmão Defumado</h3>
+                <p>Defumação artesanal com lenha de macieira.</p>
+            </div>
+            <!-- NOVO DESTAQUE 2 -->
+            <div class="highlight-card">
+                <i class="fas fa-cheese"></i>
+                <h3 class="gold-text">Dadinho Royal</h3>
+                <p>Tapioca crocante com geleia de pimenta premium.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO -->
+    <section id="local" class="container" style="text-align: center;">
+        <h2 class="gold-text" style="font-size: 2.2rem; margin-bottom: 20px;">Onde estamos</h2>
+        <p>Rua Padre Clemente Segura, 1038 - Vila Jacuí, SP</p>
+        <a href="https://maps.app.goo.gl" target="_blank" class="btn-gold">Abrir no GPS</a>
+    </section>
+
+    <!-- WHATSAPP OFICIAL COM ÍCONE -->
+    <a href="https://wa.me" class="wa-float" target="_blank" title="Fale Conosco">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer style="padding: 50px; text-align: center; color: #444; border-top: 1px solid #222;">
+        CLEMENTES BAR &copy; 2026 | THE GOLDEN STANDARD
+    </footer>
+
+</body>
+</html>
